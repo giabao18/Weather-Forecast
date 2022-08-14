@@ -9,6 +9,14 @@
 
     --main-border-radius: 25px;
     --secondary-border-radius: 15px;
+
+    --default-layout-width: 500px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
