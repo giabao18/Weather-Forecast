@@ -1,15 +1,16 @@
 .wrapper {
-
-    position: relative;
-    width: var(--default-layout-width);
-
-
+    width: 100%;
+    height: var(--default-layout-height);
 }
 
 .inner {
-    height: 100%;
+    height: 100%;   
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
+    margin-top: 10px;
+}
 
+.light {
+    font-weight: 300;
 }

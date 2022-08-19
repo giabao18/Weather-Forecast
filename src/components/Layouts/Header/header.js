@@ -8,8 +8,8 @@ function Header() {
     return (
         <header className={cx("wrapper")}>
             <div className={cx("inner")}>
-                <img src={images.logo} alt="GB-Weather Forecast" />
-                <h1 className={cx('website-title')}>Weather Forecast</h1>
+                {/* <img src="logo.png" alt="GB-Weather Forecast" /> */}
+                <h1 className={cx('website-title')}>Weather <span className={styles.light}> Forecast </span> </h1>
             </div>
         </header>
     );

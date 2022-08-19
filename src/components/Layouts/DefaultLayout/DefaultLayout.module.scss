@@ -1,3 +1,9 @@
 .container {
-    
+    display: flex;
+    align-items: center;
+}
+
+.content {
+    width: var(--default-layout-width);
+    display: flex;
 }
