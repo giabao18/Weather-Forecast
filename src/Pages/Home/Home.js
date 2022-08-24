@@ -11,7 +11,7 @@ function Home() {
 
 
     return (
-        <body className={cx('weatherForecast-box')}>
+        <body className={cx('wrapper')}>
             {/* <div className={cx("app")}>
                 <div className={cx("cardList")}>
                     <button className={cx("cardList__btn btn btn--left")}>
@@ -127,11 +127,25 @@ function Home() {
             </div> */}
 
 
-            <div className={cx('weatherForecast-box-nav')}>
-                <button className={cx("Search-icon")}>
-                    <FontAwesomeIcon icon="fa-magnifying-glass" />
-                </button>
-                <input  type="text" placeholder="search location" />
+            <div className={cx("inner")}>
+                <div className={cx("search")}>
+
+                    <div className={cx("input-container")}>
+                        <input type="text" placeholder="search location" spellCheck={false} />
+                    </div>
+
+                    <button className={cx('clear')}>
+                        <FontAwesomeIcon icon={faCircleXmark} />
+                    </button>
+
+                    <FontAwesomeIcon className={cx("loading")} icon={faSpinner} />
+
+                    <button className={cx("search-btn")}>
+                        <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </button>
+
+                    <div className="actions"></div>
+                </div>
             </div>
 
 

@@ -1,6 +1,6 @@
 .wrapper {
     width: 100%;
-    height: var(--default-layout-height);
+    height: var(--default-header-height);
 }
 
 .inner {
@@ -8,7 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0;
+    margin: 30px 0;
 }
 
 .light {
