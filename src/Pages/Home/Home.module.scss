@@ -103,7 +103,10 @@
   top: 50%;
   transform: translateY(-50%);
   color: var(--icon-color);
-  display: none;
+}
+
+.clear :hover {
+  cursor: pointer;
 }
 
 .valid {

@@ -4,16 +4,22 @@ import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
+import searchService from "~/apiServices/searchService";
+
 const cx = classNames.bind(styles);
 
 
 
 function Home() {
     // var searchInput = document.querySelector('.search-input');
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=895284fb2d2c50a520ea537456963d9c`
 
-    const [searchResult, setSearchResult] = useState('');
-    const [searchValue, setSearchValue] = useState([]);
+
+    const [searchResult, setSearchResult] = useState([]);
+    const [searchLocation, setSearchLocation] = useState('Da Nang');
     const [listResult, setListResult] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const [location, setLocation] = useState('');
 
     const inputRef = useRef();
 
@@ -33,9 +39,43 @@ function Home() {
     //     }
     // }
 
+    useEffect =() => {
+        setTimeout(() => {
+            setSearchLocation([1,2,3]);
+        },0);
+
+        if(!searchLocation.trim()) {
+            searchResult([]);
+            return;
+        }
+
+        const fetchAPI = async () => {
+            setLoading(true);
+
+            const  result = await searchService.search(searchLocation)
+            setSearchResult(result);
+
+            setLoading(false);
+        }
+
+        fetchAPI();
+
+        // fetch("6eed0a0e-3508-11ed-b3fe-0242ac130002-6eed0a5e-3508-11ed-b3fe-0242ac130002")
+        //     .then((res) => JSON.res)
+        //     .then((res) => {
+                
+        //     })
+        // request.get('')
+
+    ,[searchLocation]}
+
+    const searching = (value) => {
+        setSearchResult(prev => [prev, value]);
+    }
+
     const handleClear = () => {
         setSearchResult([])
-        setSearchValue('')
+        setSearchLocation('')
         inputRef.current.focus();
 
     }
@@ -48,24 +88,27 @@ function Home() {
 
                     <div className={cx("input-container")}>
                         <input className={cx('search-input')} type="text" placeholder="search location" spellCheck={false}
-                            value={searchValue}
+                            value={searchLocation}
                             ref={inputRef}
-                            onChange={e => setSearchValue(e.target.value)}
+                            onChange={e => setSearchLocation(e.target.value)}
                             onFocus={() => setListResult()}
+                            
                         />
                     </div>
 
 
-                    {!!searchValue &&
+                    {!!searchLocation && !loading &&
                         (<button className={cx('clear')} onClick={() => handleClear()}>
                             <FontAwesomeIcon icon={faCircleXmark} />
                         </button>)
                     }
 
 
-                    <FontAwesomeIcon className={cx("loading")} icon={faSpinner} />
+                    {loading && <FontAwesomeIcon className={cx("loading")} icon={faSpinner} />}
 
-                    <button className={cx("search-btn")}>
+                    <button className={cx("search-btn")}
+                        onKeyPress
+                    >
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
                     </button>
 
